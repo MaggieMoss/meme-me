@@ -15,6 +15,7 @@
 		BC7B8F061CF2171200606273 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC7B8F041CF2171200606273 /* LaunchScreen.storyboard */; };
 		BC7B8F111CF2171300606273 /* imagePickerTutorialTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7B8F101CF2171300606273 /* imagePickerTutorialTests.swift */; };
 		BC7B8F1C1CF2171300606273 /* imagePickerTutorialUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7B8F1B1CF2171300606273 /* imagePickerTutorialUITests.swift */; };
+		BC7B8F2B1CF399FB00606273 /* textFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7B8F2A1CF399FB00606273 /* textFieldDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		BC7B8F171CF2171300606273 /* imagePickerTutorialUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = imagePickerTutorialUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC7B8F1B1CF2171300606273 /* imagePickerTutorialUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = imagePickerTutorialUITests.swift; sourceTree = "<group>"; };
 		BC7B8F1D1CF2171300606273 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BC7B8F2A1CF399FB00606273 /* textFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = textFieldDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 		BC7B8EF71CF2171200606273 /* imagePickerTutorial */ = {
 			isa = PBXGroup;
 			children = (
+				BC7B8F291CF399E200606273 /* textFieldDelegates */,
 				BC7B8EF81CF2171200606273 /* AppDelegate.swift */,
 				BC7B8EFA1CF2171200606273 /* ViewController.swift */,
 				BC7B8EFC1CF2171200606273 /* Main.storyboard */,
@@ -126,6 +129,14 @@
 				BC7B8F1D1CF2171300606273 /* Info.plist */,
 			);
 			path = imagePickerTutorialUITests;
+			sourceTree = "<group>";
+		};
+		BC7B8F291CF399E200606273 /* textFieldDelegates */ = {
+			isa = PBXGroup;
+			children = (
+				BC7B8F2A1CF399FB00606273 /* textFieldDelegate.swift */,
+			);
+			name = textFieldDelegates;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -261,6 +272,7 @@
 			files = (
 				BC7B8EFB1CF2171200606273 /* ViewController.swift in Sources */,
 				BC7B8F011CF2171200606273 /* imagePickerTutorial.xcdatamodeld in Sources */,
+				BC7B8F2B1CF399FB00606273 /* textFieldDelegate.swift in Sources */,
 				BC7B8EF91CF2171200606273 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -488,6 +500,7 @@
 				BC7B8F221CF2171300606273 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		BC7B8F231CF2171300606273 /* Build configuration list for PBXNativeTarget "imagePickerTutorialTests" */ = {
 			isa = XCConfigurationList;
@@ -496,6 +509,7 @@
 				BC7B8F251CF2171300606273 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		BC7B8F261CF2171300606273 /* Build configuration list for PBXNativeTarget "imagePickerTutorialUITests" */ = {
 			isa = XCConfigurationList;
@@ -504,6 +518,7 @@
 				BC7B8F281CF2171300606273 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
