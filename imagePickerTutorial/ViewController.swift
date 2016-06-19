@@ -17,44 +17,32 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     @IBOutlet weak var shareButton: UIButton!
     
     // QUESTIONS/TO DO
-    // why is the color of the font not white?
-    // why is it not centered
-    // images appear pretty zoomed in
     // Is there a way to separate this out into separate files
-    // How do I show line numbers along the side?
     // What is the proper syntax for the completion handler (Activity View)
+    
     let fontAttributes = [
         NSStrokeColorAttributeName: UIColor.blackColor(),
         NSForegroundColorAttributeName: UIColor.whiteColor(),
         NSFontAttributeName: UIFont(name: "HelveticaNeue-CondensedBlack", size: 20)!,
-        NSStrokeWidthAttributeName: "4.0"
+        NSStrokeWidthAttributeName: "-4.0"
     ]
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        subscribeToKeyBoardNotifications()
+        self.subscribeToKeyBoardNotifications()
         
         // Do any additional setup after loading the view, typically from a nib.
-        
-        topText.text = "TOP"
-        topText.textAlignment = NSTextAlignment.Center
-        topText.adjustsFontSizeToFitWidth = true
-        topText.defaultTextAttributes = self.fontAttributes
-        topText.autocapitalizationType = .AllCharacters
-        topText.delegate = self
-       
-        
-        bottomText.textAlignment = NSTextAlignment.Center
-        bottomText.textColor = UIColor.whiteColor()
-        bottomText.defaultTextAttributes = self.fontAttributes
-        bottomText.autocapitalizationType = .AllCharacters
+
         bottomText.text = "BOTTOM"
-        bottomText.delegate = self
+        topText.text = "TOP"
+        assignTextProperties(bottomText)
+        assignTextProperties(topText)
+
     }
     
     override func viewWillAppear(animated: Bool) {
         cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
-        bottomText.defaultTextAttributes = self.fontAttributes
+        //self.subscribeToKeyBoardNotifications()
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -92,13 +80,13 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         presentViewController(imagePicker, animated: true, completion: nil)
     }
     
-    // TEXT FIELD DELEGATE CODE
+    /* TEXT FIELD DELEGATE CODE */
     
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         var newText = textField.text! as NSString
         newText = newText.stringByReplacingCharactersInRange(range, withString: string)
-        textField.textAlignment = NSTextAlignment.Center
         textField.defaultTextAttributes = fontAttributes
+        textField.textAlignment = NSTextAlignment.Center
         return true
         
         
@@ -123,11 +111,12 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     }
     
     
-    // MOVING KEYBOARD UP AND DOWN
+    /* MOVING KEYBOARD UP AND DOWN */
     func keyboardWillShow(notification: NSNotification){
-       
+        print("hello")
         // only move up if the bottom field is being edited
         if(bottomText.editing){
+            print("move out the way")
             self.view.frame.origin.y -= getKeyBoardHeight(notification)
         }
     }
@@ -153,7 +142,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         self.view.frame.origin.y = 0
     }
     
-    // CREATING & SAVING IMAGE
+    /* CREATING & SAVING IMAGE */
     
     struct Meme {
         var top: String
@@ -189,7 +178,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         return memedImage
     }
 
-   // SHARE IMAGE
+   /* SHARE IMAGE */
     
     @IBAction func share(sender: AnyObject) {
         // TO DO - make sure users can only share completed memes
@@ -202,6 +191,16 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 //        activityViewController.completionWithItemsHandler = (string)
 //        print(completionHander)
         presentViewController(activityViewController, animated: true, completion: nil)
+    }
+    
+    /* HELPER METHODS */
+    
+    func assignTextProperties(textField: UITextField){
+        textField.defaultTextAttributes = self.fontAttributes
+        textField.adjustsFontSizeToFitWidth = true
+        textField.textAlignment = NSTextAlignment.Center
+        textField.autocapitalizationType = .AllCharacters
+        textField.delegate = self
     }
     
 }
