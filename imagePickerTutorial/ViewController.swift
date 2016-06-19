@@ -17,6 +17,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     @IBOutlet weak var topText: UITextField!
     @IBOutlet weak var bottomText: UITextField!
     @IBOutlet weak var shareButton: UIButton!
+    weak var navbarDelegate: UINavigationControllerDelegate?
     
     // QUESTIONS/TO DO
     // Is there a way to separate this out into separate files
@@ -161,10 +162,13 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         _ = Meme(top: topText.text!, bottom: bottomText.text!, originalImage: imageView.image!, memedImage: memedImage)
     }
     
+    
     func generateMemedImage() -> UIImage {
         
         // TODO: Hide toolbar and navbar
-        
+        toolbar.hidden = true
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+       
         // Render view to an image
         UIGraphicsBeginImageContext(self.view.frame.size)
         view.drawViewHierarchyInRect(self.view.frame, afterScreenUpdates: true)
@@ -172,6 +176,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         UIGraphicsEndImageContext()
         
         // TODO:  Show toolbar and navbar       
+        toolbar.hidden = false
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
         
         return memedImage
     }
@@ -181,33 +187,23 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     @IBAction func share(sender: AnyObject) {
         //  make sure users can only share completed memes
         if imageView.image != nil {
-            print("You can save")
-        
         
             let memeImage = generateMemedImage()
+            
             // 1) LAUNCH ACTIVITY VIEW
             let activityViewController = UIActivityViewController(activityItems: [memeImage], applicationActivities: nil)
-        
-
         
             activityViewController.completionWithItemsHandler = {(activityType, completed:Bool,         returnedItems:[AnyObject]?, error: NSError?) in
                 
                 if(completed){
-                    // hide while you save the image
-                    self.navigationController?.setNavigationBarHidden(true, animated: true)
-                    self.toolbar.hidden = true
-                
                     self.save()
                     self.dismissViewControllerAnimated(true, completion: nil)
-                
-                    // bring 'em back
-                    self.toolbar.hidden = false
-                    self.navigationController?.setNavigationBarHidden(true, animated: true)
                 }
-            
             }
             presentViewController(activityViewController, animated: true, completion: nil)
+       
         } else {
+            
             // let the user know they need to add an image to save
             let alertController = UIAlertController()
             alertController.title = "Please add a photo before sharing"
@@ -217,7 +213,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
             }
             alertController.addAction(okAction)
             presentViewController(alertController, animated: true, completion: nil)
-            
         }
     }
     
