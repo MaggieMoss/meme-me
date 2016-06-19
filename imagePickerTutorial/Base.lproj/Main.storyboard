@@ -21,6 +21,12 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7Qr-6z-qtj">
                                 <rect key="frame" x="0.0" y="44" width="320" height="436"/>
                             </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="BOTTOM" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bhk-TC-ZyU">
+                                <rect key="frame" x="0.0" y="444" width="320" height="30"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mnS-zq-5pz">
                                 <rect key="frame" x="-4" y="480" width="328" height="44"/>
                                 <items>
@@ -39,6 +45,12 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="QOq-Og-xHy"/>
                                 </items>
                             </toolbar>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="749" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="TOP" allowsEditingTextAttributes="YES" textAlignment="center" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="1fd-Dd-P2Z">
+                                <rect key="frame" x="0.0" y="50" width="320" height="23"/>
+                                <color key="textColor" red="0.98799435769999999" green="0.96810524279999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                             <navigationBar contentMode="scaleAspectFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Lgb-qq-WMu">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <items>
@@ -64,19 +76,10 @@
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="bCN-v6-1C6"/>
+                                </connections>
                             </navigationBar>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="749" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="TOP" allowsEditingTextAttributes="YES" textAlignment="center" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="1fd-Dd-P2Z">
-                                <rect key="frame" x="0.0" y="50" width="320" height="23"/>
-                                <color key="textColor" red="0.98799435769999999" green="0.96810524279999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="BOTTOM" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bhk-TC-ZyU">
-                                <rect key="frame" x="0.0" y="444" width="320" height="30"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -109,7 +112,9 @@
                         <outlet property="bottomText" destination="bhk-TC-ZyU" id="sCU-E5-MbM"/>
                         <outlet property="cameraButton" destination="mzq-QT-wZo" id="r2O-ip-zme"/>
                         <outlet property="imageView" destination="7Qr-6z-qtj" id="Wh7-Rj-1Ei"/>
+                        <outlet property="navbar" destination="7BY-ft-Lhh" id="mQA-yT-4Xe"/>
                         <outlet property="shareButton" destination="FYP-yj-qud" id="AoL-aq-xTV"/>
+                        <outlet property="toolbar" destination="mnS-zq-5pz" id="89Y-kC-yuI"/>
                         <outlet property="topText" destination="1fd-Dd-P2Z" id="kqO-Z6-o53"/>
                     </connections>
                 </viewController>

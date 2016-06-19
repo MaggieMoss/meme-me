@@ -10,6 +10,8 @@ import UIKit
 
 class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate {
 
+    @IBOutlet weak var toolbar: UIToolbar!
+    @IBOutlet weak var navbar: UINavigationItem!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     @IBOutlet weak var topText: UITextField!
@@ -32,7 +34,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         self.subscribeToKeyBoardNotifications()
         
         // Do any additional setup after loading the view, typically from a nib.
-
+        
         bottomText.text = "BOTTOM"
         topText.text = "TOP"
         assignTextProperties(bottomText)
@@ -42,7 +44,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     
     override func viewWillAppear(animated: Bool) {
         cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
-        //self.subscribeToKeyBoardNotifications()
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -94,7 +95,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     func textFieldDidBeginEditing(textField: UITextField) {
        
         // only want it to clear if the field has not been edited yet - check for default text
-        // QUESTION: Is there a more efficient way of doing this? Placeholders?
         if let currentText = textField.text {
             if currentText == "TOP" || currentText == "BOTTOM" {
                 textField.text = ""
@@ -113,10 +113,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     
     /* MOVING KEYBOARD UP AND DOWN */
     func keyboardWillShow(notification: NSNotification){
-        print("hello")
         // only move up if the bottom field is being edited
         if(bottomText.editing){
-            print("move out the way")
             self.view.frame.origin.y -= getKeyBoardHeight(notification)
         }
     }
@@ -181,19 +179,49 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
    /* SHARE IMAGE */
     
     @IBAction func share(sender: AnyObject) {
-        // TO DO - make sure users can only share completed memes
-        let memeImage = generateMemedImage()
-        // 1) LAUNCH ACTIVITY VIEW
-        let activityViewController = UIActivityViewController(activityItems: [memeImage], applicationActivities: nil )
+        //  make sure users can only share completed memes
+        if imageView.image != nil {
+            print("You can save")
+        
+        
+            let memeImage = generateMemedImage()
+            // 1) LAUNCH ACTIVITY VIEW
+            let activityViewController = UIActivityViewController(activityItems: [memeImage], applicationActivities: nil)
         
 
         
-//        activityViewController.completionWithItemsHandler = (string)
-//        print(completionHander)
-        presentViewController(activityViewController, animated: true, completion: nil)
+            activityViewController.completionWithItemsHandler = {(activityType, completed:Bool,         returnedItems:[AnyObject]?, error: NSError?) in
+                
+                if(completed){
+                    // hide while you save the image
+                    self.navigationController?.setNavigationBarHidden(true, animated: true)
+                    self.toolbar.hidden = true
+                
+                    self.save()
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                
+                    // bring 'em back
+                    self.toolbar.hidden = false
+                    self.navigationController?.setNavigationBarHidden(true, animated: true)
+                }
+            
+            }
+            presentViewController(activityViewController, animated: true, completion: nil)
+        } else {
+            // let the user know they need to add an image to save
+            let alertController = UIAlertController()
+            alertController.title = "Please add a photo before sharing"
+            
+            let okAction = UIAlertAction(title: "ok", style: UIAlertActionStyle.Default){
+                 action in self.dismissViewControllerAnimated(true, completion: nil)
+            }
+            alertController.addAction(okAction)
+            presentViewController(alertController, animated: true, completion: nil)
+            
+        }
     }
     
-    /* HELPER METHODS */
+    /* HELPER FUNCTIONS */
     
     func assignTextProperties(textField: UITextField){
         textField.defaultTextAttributes = self.fontAttributes
