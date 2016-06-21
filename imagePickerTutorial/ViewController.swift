@@ -26,13 +26,12 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     let fontAttributes = [
         NSStrokeColorAttributeName: UIColor.blackColor(),
         NSForegroundColorAttributeName: UIColor.whiteColor(),
-        NSFontAttributeName: UIFont(name: "HelveticaNeue-CondensedBlack", size: 20)!,
+        NSFontAttributeName: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
         NSStrokeWidthAttributeName: "-4.0"
     ]
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        self.subscribeToKeyBoardNotifications()
         
         // Do any additional setup after loading the view, typically from a nib.
         
@@ -44,24 +43,37 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     }
     
     override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
+        self.subscribeToKeyBoardNotifications()
     }
     
     override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
          unsubscribeFromKeyboardNotifications()
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
 
-
-    @IBAction func pickAnImage(sender: AnyObject) {
+   func pickAnImageShareFunc(source: UIImagePickerControllerSourceType){
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
-        imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+        imagePicker.sourceType = source
         self.presentViewController(imagePicker, animated:true, completion: nil)
+
+    }
+
+    @IBAction func pickAnImage(sender: AnyObject) {
+//        let imagePicker = UIImagePickerController()
+//        imagePicker.delegate = self
+//        imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+//        self.presentViewController(imagePicker, animated:true, completion: nil)
+        pickAnImageShareFunc(UIImagePickerControllerSourceType.PhotoLibrary)
+    }
+    
+    @IBAction func pickAnImageFromCamera(sender: AnyObject) {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = UIImagePickerControllerSourceType.Camera
+        presentViewController(imagePicker, animated: true, completion: nil)
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]){
@@ -74,14 +86,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     func imagePickerControllerDidCancel(picker: UIImagePickerController){
         dismissViewControllerAnimated(true, completion: nil)
     }
-    
-    @IBAction func pickAnImageFromCamera(sender: AnyObject) {
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = UIImagePickerControllerSourceType.Camera
-        presentViewController(imagePicker, animated: true, completion: nil)
-    }
-    
     /* TEXT FIELD DELEGATE CODE */
     
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
@@ -116,7 +120,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     func keyboardWillShow(notification: NSNotification){
         // only move up if the bottom field is being edited
         if(bottomText.editing){
-            self.view.frame.origin.y -= getKeyBoardHeight(notification)
+            self.view.frame.origin.y = getKeyBoardHeight(notification) * (-1)
         }
     }
     
@@ -142,19 +146,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     }
     
     /* CREATING & SAVING IMAGE */
-    
-    struct Meme {
-        var top: String
-        var bottom: String
-        var originalImage: UIImage
-        var memedImage: UIImage
-        init(top: String, bottom: String, originalImage: UIImage, memedImage: UIImage) {
-            self.top = top
-            self.originalImage = originalImage
-            self.bottom = bottom
-            self.memedImage = memedImage
-        }
-    }
+  
     
     func save(){
         // create the meme

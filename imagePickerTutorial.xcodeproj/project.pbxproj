@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BC157B521D175989009BDA34 /* Meme.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC157B511D175989009BDA34 /* Meme.swift */; };
 		BC7B8EF91CF2171200606273 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7B8EF81CF2171200606273 /* AppDelegate.swift */; };
 		BC7B8EFB1CF2171200606273 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7B8EFA1CF2171200606273 /* ViewController.swift */; };
 		BC7B8EFE1CF2171200606273 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC7B8EFC1CF2171200606273 /* Main.storyboard */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BC157B511D175989009BDA34 /* Meme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Meme.swift; sourceTree = "<group>"; };
 		BC7B8EF51CF2171200606273 /* imagePickerTutorial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = imagePickerTutorial.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC7B8EF81CF2171200606273 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BC7B8EFA1CF2171200606273 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 				BC7B8EF81CF2171200606273 /* AppDelegate.swift */,
 				BC7B8EFA1CF2171200606273 /* ViewController.swift */,
 				BC7B8EFC1CF2171200606273 /* Main.storyboard */,
+				BC157B511D175989009BDA34 /* Meme.swift */,
 				BC7B8F021CF2171200606273 /* Assets.xcassets */,
 				BC7B8F041CF2171200606273 /* LaunchScreen.storyboard */,
 				BC7B8F071CF2171200606273 /* Info.plist */,
@@ -270,6 +273,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC157B521D175989009BDA34 /* Meme.swift in Sources */,
 				BC7B8EFB1CF2171200606273 /* ViewController.swift in Sources */,
 				BC7B8F011CF2171200606273 /* imagePickerTutorial.xcdatamodeld in Sources */,
 				BC7B8F2B1CF399FB00606273 /* textFieldDelegate.swift in Sources */,
