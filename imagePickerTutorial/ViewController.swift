@@ -52,8 +52,9 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         super.viewWillDisappear(animated)
          unsubscribeFromKeyboardNotifications()
     }
-
-   func pickAnImageShareFunc(source: UIImagePickerControllerSourceType){
+    
+    // pick an image helper function
+    func pickAnImage(source: UIImagePickerControllerSourceType){
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.sourceType = source
@@ -61,19 +62,12 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 
     }
 
-    @IBAction func pickAnImage(sender: AnyObject) {
-//        let imagePicker = UIImagePickerController()
-//        imagePicker.delegate = self
-//        imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
-//        self.presentViewController(imagePicker, animated:true, completion: nil)
-        pickAnImageShareFunc(UIImagePickerControllerSourceType.PhotoLibrary)
+    @IBAction func pickAnImageFromLibrary(sender: AnyObject) {
+        pickAnImage(UIImagePickerControllerSourceType.PhotoLibrary)
     }
     
     @IBAction func pickAnImageFromCamera(sender: AnyObject) {
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = UIImagePickerControllerSourceType.Camera
-        presentViewController(imagePicker, animated: true, completion: nil)
+        pickAnImage(UIImagePickerControllerSourceType.Camera)
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]){

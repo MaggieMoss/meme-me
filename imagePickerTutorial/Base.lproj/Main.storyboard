@@ -33,7 +33,7 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="A2a-72-qwK"/>
                                     <barButtonItem title="Album" id="IbA-qo-Ubd">
                                         <connections>
-                                            <action selector="pickAnImage:" destination="BYZ-38-t0r" id="p1l-en-EbE"/>
+                                            <action selector="pickAnImageFromLibrary:" destination="BYZ-38-t0r" id="W7R-EI-QEN"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem title="Camera" id="mzq-QT-wZo">
