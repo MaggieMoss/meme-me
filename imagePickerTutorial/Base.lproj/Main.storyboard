@@ -56,24 +56,7 @@
                                 <items>
                                     <navigationItem title="Meme" id="7BY-ft-Lhh">
                                         <barButtonItem key="backBarButtonItem" title="&lt;" id="1js-zC-1l0"/>
-                                        <barButtonItem key="leftBarButtonItem" style="plain" id="sbi-Af-bSp">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="FYP-yj-qud">
-                                                <rect key="frame" x="16" y="7" width="40" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal">
-                                                    <attributedString key="attributedTitle">
-                                                        <fragment content="Share">
-                                                            <attributes>
-                                                                <font key="NSFont" size="15" name="HelveticaNeue"/>
-                                                            </attributes>
-                                                        </fragment>
-                                                    </attributedString>
-                                                </state>
-                                                <connections>
-                                                    <action selector="share:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fZX-hF-X3R"/>
-                                                </connections>
-                                            </button>
-                                        </barButtonItem>
+                                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="action" id="sbi-Af-bSp"/>
                                     </navigationItem>
                                 </items>
                                 <connections>
@@ -113,7 +96,6 @@
                         <outlet property="cameraButton" destination="mzq-QT-wZo" id="r2O-ip-zme"/>
                         <outlet property="imageView" destination="7Qr-6z-qtj" id="Wh7-Rj-1Ei"/>
                         <outlet property="navbar" destination="7BY-ft-Lhh" id="mQA-yT-4Xe"/>
-                        <outlet property="shareButton" destination="FYP-yj-qud" id="AoL-aq-xTV"/>
                         <outlet property="toolbar" destination="mnS-zq-5pz" id="89Y-kC-yuI"/>
                         <outlet property="topText" destination="1fd-Dd-P2Z" id="kqO-Z6-o53"/>
                     </connections>
